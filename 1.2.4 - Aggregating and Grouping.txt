@@ -1,0 +1,60 @@
+1.
+SELECT
+	date,
+	MAX(maxtemperaturef) as max_temp
+FROM
+	weather
+GROUP BY
+	date
+ORDER BY
+	max_temp DESC
+
+SELECT
+	date,
+	zip,
+	maxtemperaturef
+FROM 
+	weather
+WHERE
+	maxtemperaturef = (SELECT MAX(maxtemperaturef) FROM weather)
+
+
+2.
+SELECT
+	COUNT(trip_id) AS trips,
+	start_station
+FROM
+	trips
+GROUP BY
+	start_station
+
+
+3.
+SELECT
+	trip_id,
+	MIN(duration) as min_trip
+FROM
+	trips
+GROUP BY
+	trip_id
+ORDER BY
+	min_trip ASC
+
+SELECT
+	*
+FROM
+	trips
+WHERE
+	duration = (SELECT MIN(duration) FROM trips)
+
+
+4.
+SELECT
+	end_station,
+	AVG(duration) as avg_duration
+FROM
+	trips
+GROUP BY
+	end_station
+ORDER BY
+	avg_duration ASC
